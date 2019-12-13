@@ -85,6 +85,17 @@
   
   
 }
+.heart {
+  animation: beat .50s infinite alternate;
+  color: red;
+}
+
+@keyframes beat {
+  to {
+      transform: scale(1.4);
+  }
+}
+
 
 
 
