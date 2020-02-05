@@ -41,7 +41,9 @@
 
 
 }
-
+.first{
+  height: 500px;
+}
  
  .content{
     border: 20px solid white;
