@@ -20,31 +20,27 @@
   <div class="container-fluid">
 
     <nav class="sticky-top head-content">
-      <div class="row   ">
-        <div class=" col-md-6 col-sm-6 col-6 brand-name ">
+      
+      <div class="brand-name social-icon d-flex justify-content-between">
 
-          <h3>
-            <a href="index.html"> Magazine <sup> TM</sup> </a>
-          </h3>
+        <h3>
+          <a href="index.html"> Magazine <sup> TM</sup> </a>
+        </h3>
+
+      
+        <div class="mt-2">
+
+          <a href="https://www.facebook.com/sapan.yadav.520" target="_blank"> <i
+              class="fa fa-facebook-square" style="font-size: 25px;"></i></a>
+          <a href="https://www.instagram.com/sapankr800/" target="_blank"> <i class="fa fa-instagram mx-2" style="font-size: 25px;"></i> </a>
+          <a href="https://www.linkedin.com/in/sapan-kumar-12b9ab175" target="_blank"> <i
+              class="fa fa-linkedin-square" style="font-size: 25px;"></i> </a>
 
         </div>
+      
+    </div>
 
-        <div class=" col-md-6 col-sm-6 col-6 social-icon">
-          <div class="menu-icon">
-
-            <a href="https://www.facebook.com/sapan.yadav.520" target="_blank"> <i
-                class="fa fa-facebook-square"></i></a>
-            <a href="https://www.instagram.com/sapankr800/" target="_blank"> <i class="fa fa-instagram"></i> </a>
-            <a href="https://www.linkedin.com/in/sapan-kumar-12b9ab175" target="_blank"> <i
-                class="fa fa-linkedin-square"></i> </a>
-
-          </div>
-        </div>
-
-
-      </div>
-
-    </nav>
+  </nav>
     <br>
 
     <div class="row">
@@ -63,10 +59,8 @@
     <section class="main-content">
 
       <div class="main row">
-        <div class="first col-md-2" >
-          <h5>Weather Report</h5>
-        </div>
-        <div class="col-md-10 col-sm-12 second">
+        
+        <div class="col-md-12 col-sm-12 second">
           <h3 class="heading"> Top Business Stories</h3>
           <div class="row" id="card">
 
@@ -104,46 +98,44 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-  <script>
+    <script>
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-
-
-        var myObj = JSON.parse(xhttp.responseText);
-        console.log(myObj.articles);
-        var output = "";
-        for (var i = 0; i < myObj.articles.length; i++) {
-          //console.log(myObj.articles[i].author);
-          output += `
-        
-        <div class="content  col-md-4 col-sm-6">
-          <a href="${myObj.articles[i].url}" target="_blank">
-        <img src= " ${myObj.articles[i].urlToImage}"  ></a>
-          <div class="container ">
-              <a href="${myObj.articles[i].url}" target="_blank">
-            <p>${myObj.articles[i].title}</p>  </a>
-            
-          </div>
-        </div>
-        
-        `;
-
-
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var myObj = JSON.parse(xhttp.responseText);
+          console.log(myObj.results);
+          var output = "";
+          for (var i = 0; i < myObj.results.length; i++) {
+            //console.log(myObj.articles[i].author);
+            output += `
+  
+  <div class="content  col-md-3 col-sm-4">
+    <a href=" ${myObj.results[i].link}" target="_blank">
+  <img src= " ${myObj.results[i].image_url}"  ></a>
+    <div class="container ">
+   <a href=" ${myObj.results[i].link}" target="_blank">
+      <p>${myObj.results[i].title}</p> </a>
+      
+    </div>
+  </div>
+  
+  `;
+  
+  
+          }
+          document.getElementById("card").innerHTML = output;
+  
+  
+  
+  
         }
-        document.getElementById("card").innerHTML = output;
-
-      }
-    };
-    xhttp.open("GET", "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=335c0e75fcf04cf18fbb1507f9ed273f", true);
-    xhttp.send();
-
-
-
-
-
-  </script>
+      };
+      xhttp.open("GET", "https://newsdata.io/api/1/latest?country=in&category=business&apikey=pub_66288bc7c934341df0aef9883819485767c45", true);
+      xhttp.send();
+  
+  
+    </script>
 </body>
 
 </html>
